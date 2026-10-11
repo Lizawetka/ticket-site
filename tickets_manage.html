@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Управление бронированием - Путешествуйте выгодно</title>
+    <style>
+        :root {
+            --primary: #ff6b6b;
+            --secondary: #4834d4;
+            --accent: #00d2d3;
+            --warning: #feca57;
+            --dark: #222f3e;
+            --light: #f1f2f6;
+        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: var(--light); color: var(--dark); }
+        
+        header { 
+            background: linear-gradient(135deg, var(--secondary), var(--primary)); 
+            color: white; 
+            padding: 30px 20px; 
+            text-align: center; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        header h1 { font-size: 30px; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 1px; }
+
+        .nav-grid {
+            max-width: 1000px;
+            margin: -25px auto 20px auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+        .nav-card {
+            background: white;
+            padding: 15px 10px;
+            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: bold;
+            font-size: 14px;
+            transition: transform 0.3s, background 0.3s, color 0.3s;
+            border-bottom: 4px solid var(--primary);
+        }
+        .nav-card:hover { transform: translateY(-5px); background: var(--secondary); color: white; }
+
+        .container { max-width: 950px; margin: 20px auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        
+        .tabs-header {
+            display: flex;
+            gap: 30px;
+            border-bottom: 2px solid #e4e7eb;
+            margin-bottom: 25px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .tab-link {
+            padding-bottom: 10px;
+            color: #718093;
+            text-decoration: none;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+        }
+        .tab-link.active {
+            color: var(--secondary);
+            border-bottom-color: var(--secondary);
+        }
+        .tab-link:hover { color: var(--secondary); }
+
+        .ticket-card {
+            background: #f8f9fa;
+            border: 2px dashed var(--secondary);
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+        .ticket-card h3 { margin-top: 0; color: var(--secondary); border-bottom: 2px solid var(--warning); padding-bottom: 5px; }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+            font-size: 15px;
+        }
+        .info-item strong { color: #57606f; }
+
+        .btn-cancel {
+            background: #ff4757;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: inline-block;
+            text-decoration: none;
+        }
+        .btn-cancel:hover { background: #ff6b81; color: white; }
+
+        footer { text-align: center; padding: 20px; background: var(--dark); color: white; margin-top: 40px; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Управление бронированием</h1>
+    <p>Просмотр деталей заказа и отмена билетов</p>
+</header>
+
+<nav class="nav-grid">
+    <a href="index.html" class="nav-card">🏠 Главная</a>
+    <a href="transport.html" class="nav-card">🚆 Транспорт</a>
+    <a href="flights_plane.html" class="nav-card">✈️ Рейсы</a>
+    <a href="tickets.html" class="nav-card" style="background: var(--secondary); color: white;">🎟️ Билеты</a>
+    <a href="customers.html" class="nav-card">👤 Заказчики</a>
+    <a href="contacts.html" class="nav-card">📞 Контакты</a>
+</nav>
+
+<div class="container">
+    <div class="tabs-header">
+        <a href="tickets.html" class="tab-link">Поиск билетов</a>
+        <a href="tickets_register.html" class="tab-link">Онлайн-регистрация</a>
+        <a href="tickets_manage.html" class="tab-link active">Управление бронированием</a>
+    </div>
+
+    <!-- Карточка активного бронирования -->
+    <div class="ticket-card">
+        <h3>🎫 Билет № 4892-SU (Активен)</h3>
+        
+        <div class="info-grid">
+            <div class="info-item"><strong>Вид транспорта:</strong> ✈️ Самолет</div>
+            <div class="info-item"><strong>Рейс:</strong> SU-1214 (Аэрофлот)</div>
+            <div class="info-item"><strong>Маршрут:</strong> Москва (SVO) &rarr; Санкт-Петербург (LED)</div>
+            <div class="info-item"><strong>Дата отправления:</strong> 15 октября 2026, 08:04</div>
+            <div class="info-item"><strong>Пассажир:</strong> Иванов Иван Иванович</div>
+            <div class="info-item"><strong>Паспорт:</strong> 4512 654321</div>
+            <div class="info-item"><strong>Телефон:</strong> +7 (999) 111-22-33</div>
+            <div class="info-item"><strong>Статус оплаты:</strong> <span style="color: #27ae60; font-weight: bold;">Оплачено (Карта **** 5678)</span></div>
+        </div>
+    </div>
+
+    <!-- Кнопка отмены -->
+    <a href="tickets.html" class="btn-cancel" onclick="alert('Бронирование и покупка билета успешно отменены!');">Отменить бронирование / покупку билета</a>
+</div>
+
+<footer>
+    <p>&copy; 2026 Система заказа билетов. Все права защищены.</p>
+</footer>
+
+</body>
+</html>

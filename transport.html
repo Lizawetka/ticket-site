@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Виды транспорта - Путешествуйте выгодно</title>
+    <style>
+        :root {
+            --primary: #ff6b6b;
+            --secondary: #4834d4;
+            --accent: #00d2d3;
+            --warning: #feca57;
+            --dark: #222f3e;
+            --light: #f1f2f6;
+        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: var(--light); color: var(--dark); }
+        
+        header { 
+            background: linear-gradient(135deg, var(--secondary), var(--primary)); 
+            color: white; 
+            padding: 30px 20px; 
+            text-align: center; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        header h1 { font-size: 30px; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 1px; }
+
+        .nav-grid {
+            max-width: 1000px;
+            margin: -25px auto 20px auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+        .nav-card {
+            background: white;
+            padding: 15px 10px;
+            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: bold;
+            font-size: 14px;
+            transition: transform 0.3s, background 0.3s, color 0.3s;
+            border-bottom: 4px solid var(--primary);
+        }
+        .nav-card:hover { transform: translateY(-5px); background: var(--secondary); color: white; }
+
+        .container { max-width: 950px; margin: 20px auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        h2 { color: var(--secondary); font-size: 24px; margin-top: 0; border-bottom: 3px solid var(--warning); padding-bottom: 8px; display: inline-block; }
+
+        /* Красивые кнопки-карточки транспорта */
+        .transport-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+        .transport-btn {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border: 2px solid #dee2e6;
+            padding: 25px 20px;
+            border-radius: 15px;
+            text-align: center;
+            text-decoration: none;
+            color: var(--dark);
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            display: block;
+        }
+        .transport-btn span { display: block; font-size: 36px; margin-bottom: 10px; }
+        .transport-btn:hover {
+            transform: translateY(-5px);
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 8px 20px rgba(72, 52, 212, 0.3);
+        }
+
+        footer { text-align: center; padding: 20px; background: var(--dark); color: white; margin-top: 40px; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Виды транспорта</h1>
+    <p>Выберите категорию для перехода к расписанию рейсов</p>
+</header>
+
+<nav class="nav-grid">
+    <a href="index.html" class="nav-card">🏠 Главная</a>
+    <a href="transport.html" class="nav-card" style="background: var(--secondary); color: white;">🚆 Транспорт</a>
+    <a href="flights_plane.html" class="nav-card">✈️ Рейсы</a>
+    <a href="tickets.html" class="nav-card">🎟️ Билеты</a>
+    <a href="customers.html" class="nav-card">👤 Заказчики</a>
+    <a href="contacts.html" class="nav-card">📞 Контакты</a>
+</nav>
+
+<div class="container">
+    <h2>Категории перевозок</h2>
+    <p>Нажмите на любую карточку транспорта, чтобы открыть подробное расписание и список рейсов:</p>
+
+    <div class="transport-grid">
+        <a href="flights_plane.html" class="transport-btn">
+            <span>✈️</span> Самолет
+        </a>
+        <a href="flights_train.html" class="transport-btn">
+            <span>🚆</span> Поезд
+        </a>
+        <a href="flights_bus.html" class="transport-btn">
+            <span>🚌</span> Автобус
+        </a>
+        <a href="flights_electric.html" class="transport-btn">
+            <span>⚡</span> Электричка
+        </a>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2026 Система заказа билетов. Все права защищены.</p>
+</footer>
+
+</body>
+</html>

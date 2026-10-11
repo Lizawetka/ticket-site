@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="заказ билетов, билеты на поезд, самолет, автобус, расписание рейсов, дешевые билеты, электрички">
+    <meta name="description" content="Сервис быстрого заказа и бронирования билетов на любые виды транспорта. Путешествуйте выгодно!">
+    <title>Главная - Путешествуйте выгодно</title>
+    <style>
+        :root {
+            --primary: #ff6b6b;
+            --secondary: #4834d4;
+            --accent: #00d2d3;
+            --warning: #feca57;
+            --dark: #222f3e;
+            --light: #f1f2f6;
+        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: var(--light); color: var(--dark); }
+        
+        header { 
+            background: linear-gradient(135deg, var(--secondary), var(--primary)); 
+            color: white; 
+            padding: 40px 20px; 
+            text-align: center; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        header h1 { font-size: 36px; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 2px; }
+        header p { font-size: 18px; margin: 0; opacity: 0.9; }
+
+        .nav-grid {
+            max-width: 1000px;
+            margin: -30px auto 30px auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+        .nav-card {
+            background: white;
+            padding: 15px 10px;
+            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: bold;
+            font-size: 14px;
+            transition: transform 0.3s, background 0.3s, color 0.3s;
+            border-bottom: 4px solid var(--primary);
+        }
+        .nav-card:hover {
+            transform: translateY(-5px);
+            background: var(--secondary);
+            color: white;
+        }
+
+        .main-layout {
+            max-width: 1100px;
+            margin: 20px auto;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 20px;
+            padding: 0 20px;
+        }
+
+        .sidebar {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            height: fit-content;
+        }
+        .sidebar h3 {
+            color: var(--secondary);
+            font-size: 18px;
+            margin-top: 0;
+            border-bottom: 2px solid var(--warning);
+            padding-bottom: 5px;
+        }
+        .news-snippet {
+            margin-bottom: 15px;
+            padding-bottom: 12px;
+            border-bottom: 1px dashed #e4e7eb;
+        }
+        .news-snippet:last-child { border-bottom: none; margin-bottom: 0; }
+        .news-date { font-size: 12px; color: #718093; }
+        .news-title { font-size: 14px; font-weight: bold; color: var(--dark); text-decoration: none; display: block; margin-top: 3px; }
+        .news-title:hover { color: var(--primary); }
+
+        /* Стили календаря */
+        .calendar-widget {
+            margin-top: 25px;
+            background: #f8f9fa;
+            border: 1px solid #e4e7eb;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+        }
+        .calendar-widget h4 {
+            margin: 0 0 10px 0;
+            color: var(--secondary);
+            font-size: 16px;
+        }
+        .calendar-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+        .calendar-table th {
+            color: #718093;
+            padding: 5px;
+            font-weight: 600;
+        }
+        .calendar-table td {
+            padding: 6px;
+            text-align: center;
+            color: var(--dark);
+        }
+        .calendar-table td.muted {
+            color: #b2bec3;
+        }
+        .calendar-table td.today {
+            background: var(--secondary);
+            color: white;
+            font-weight: bold;
+            border-radius: 50%;
+        }
+
+        .container { 
+            background: white; 
+            padding: 30px; 
+            border-radius: 12px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
+        }
+        h2 { color: var(--secondary); font-size: 24px; border-bottom: 3px solid var(--warning); padding-bottom: 8px; display: inline-block; margin-top: 0; }
+        
+        .promo-banner {
+            background: linear-gradient(45deg, var(--warning), #ff9f43);
+            color: #222;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-weight: bold;
+            text-align: center;
+            font-size: 18px;
+            box-shadow: 0 4px 10px rgba(254, 202, 87, 0.3);
+        }
+
+        /* Поисковик */
+        .search-box {
+            background: #f8f9fa;
+            border: 2px solid #e4e7eb;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+        }
+        .search-box h3 { margin-top: 0; color: var(--secondary); font-size: 16px; }
+        .search-form { display: flex; gap: 10px; }
+        .search-input { flex: 1; padding: 10px 15px; border: 1px solid #ccc; border-radius: 6px; font-size: 15px; }
+        .search-btn { background: var(--secondary); color: white; border: none; padding: 10px 20px; border-radius: 6px; font-weight: bold; cursor: pointer; }
+        .search-btn:hover { background: #3b2bc5; }
+
+        #search-results {
+            margin-top: 15px;
+            padding: 15px;
+            background: #e8f4fd;
+            border-left: 4px solid var(--secondary);
+            border-radius: 6px;
+            display: none;
+        }
+        #search-results h4 { margin: 0 0 8px 0; color: var(--secondary); font-size: 15px; }
+        #search-results ul { margin: 0; padding-left: 20px; font-size: 14px; }
+        #search-results li { margin-bottom: 5px; }
+        #search-results a { color: var(--secondary); font-weight: bold; text-decoration: none; }
+        #search-results a:hover { text-decoration: underline; }
+
+        /* Полезные ссылки */
+        .links-box {
+            margin-top: 25px;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #e4e7eb;
+        }
+        .links-box h3 { margin-top: 0; color: var(--secondary); font-size: 16px; border-bottom: 2px solid var(--accent); padding-bottom: 5px; display: inline-block; }
+        .links-desc {
+            font-size: 14px;
+            color: #57606f;
+            margin: 10px 0 15px 0;
+            line-height: 1.5;
+        }
+        .links-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+        .links-list li a {
+            display: block;
+            background: white;
+            padding: 10px 15px;
+            border-radius: 6px;
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            border: 1px solid #e4e7eb;
+            transition: all 0.2s;
+        }
+        .links-list li a:hover {
+            background: var(--secondary);
+            color: white;
+            border-color: var(--secondary);
+        }
+
+        footer { text-align: center; padding: 20px; background: var(--dark); color: white; margin-top: 40px; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Путешествуйте выгодно</h1>
+    <p>Лучшие билеты на самолеты, поезда и автобусы в одном месте</p>
+</header>
+
+<nav class="nav-grid">
+    <a href="index.html" class="nav-card" style="border-bottom-color: var(--primary);">🏠 Главная</a>
+    <a href="transport.html" class="nav-card" style="border-bottom-color: var(--accent);">🚆 Транспорт</a>
+    <a href="flights_plane.html" class="nav-card" style="border-bottom-color: var(--warning);">✈️ Рейсы</a>
+    <a href="tickets.html" class="nav-card" style="border-bottom-color: var(--secondary);">🎟️ Билеты</a>
+    <a href="customers.html" class="nav-card" style="border-bottom-color: var(--primary);">👤 Заказчики</a>
+    <a href="contacts.html" class="nav-card" style="border-bottom-color: var(--accent);">📞 Контакты</a>
+</nav>
+
+<div class="main-layout">
+    <aside class="sidebar">
+        <h3>📰 Свежие новости</h3>
+        <div class="news-snippet">
+            <span class="news-date">11 октября 2026</span>
+            <a href="flights_plane.html" class="news-title">Открытие новых авиарейсов на юг России</a>
+        </div>
+        <div class="news-snippet">
+            <span class="news-date">10 октября 2026</span>
+            <a href="flights_train.html" class="news-title">Запуск двухэтажных поездов по графику</a>
+        </div>
+        <div class="news-snippet">
+            <span class="news-date">08 октября 2026</span>
+            <a href="tickets.html" class="news-title">Скидки 15% при покупке билетов онлайн</a>
+        </div>
+        <div class="news-snippet">
+            <span class="news-date">05 октября 2026</span>
+            <a href="transport.html" class="news-title">Обновление расписания электричек МЦД</a>
+        </div>
+
+        <!-- Виджет календаря (Пункт 38 из методички) -->
+        <div class="calendar-widget">
+            <h4>📅 Октябрь 2026</h4>
+            <table class="calendar-table">
+                <tr>
+                    <th>Пн</th><th>Вт</th><th>Ср</th><th>Чт</th><th>Пт</th><th>Сб</th><th>Вс</th>
+                </tr>
+                <tr>
+                    <td class="muted">28</td><td class="muted">29</td><td class="muted">30</td><td>1</td><td>2</td><td>3</td><td>4</td>
+                </tr>
+                <tr>
+                    <td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td class="today">11</td>
+                </tr>
+                <tr>
+                    <td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td>
+                </tr>
+                <tr>
+                    <td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td>
+                </tr>
+                <tr>
+                    <td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td><td class="muted">1</td>
+                </tr>
+            </table>
+        </div>
+    </aside>
+
+    <main class="container">
+        <h2>Добро пожаловать в систему бронирования!</h2>
+        <p>Наш сервис создан для быстрого поиска и оформления билетов по самым выгодным ценам. Выбирайте нужный вид транспорта и отправляйтесь в путь!</p>
+
+        <!-- Поисковик -->
+        <div class="search-box">
+            <h3>🔍 Поиск</h3>
+            <form class="search-form" onsubmit="showResults(event)">
+                <input type="text" id="search-keyword" class="search-input" placeholder="Введите слово для поиска (например: рейс, билет, самолет)..." required>
+                <button type="submit" class="search-btn">Найти</button>
+            </form>
+
+            <div id="search-results">
+                <h4 id="result-title">Результаты поиска:</h4>
+                <ul id="result-list"></ul>
+            </div>
+        </div>
+
+        <div class="promo-banner">
+            🔥 Скидка 15% на все автобусные и железнодорожные направления!
+        </div>
+
+        <!-- Полезные ссылки -->
+        <div class="links-box">
+            <h3>🔗 Полезные ссылки</h3>
+            <p class="links-desc">Если вы не смогли найти какую-либо информацию на нашем сайте, пожалуйста, вы можете найти все подробности и уточнить детали на проверенных ресурсах:</p>
+            <ul class="links-list">
+                <li><a href="https://www.rzd.ru" target="_blank">🚆 РЖД (Поезда)</a></li>
+                <li><a href="https://www.aeroflot.ru" target="_blank">✈️ Аэрофлот</a></li>
+                <li><a href="https://www.pobeda.aero" target="_blank">✈️ Победа</a></li>
+                <li><a href="https://troline.ru" target="_blank">🚌 Славянский Экспресс</a></li>
+            </ul>
+        </div>
+    </main>
+</div>
+
+<script>
+function showResults(event) {
+    event.preventDefault();
+    let resultsBox = document.getElementById('search-results');
+    let resultList = document.getElementById('result-list');
+    
+    resultList.innerHTML = "";
+    resultsBox.style.display = "block";
+
+    let matches = [
+        { text: "Расписание и статус рейсов самолетов", url: "flights_plane.html" },
+        { text: "Табло и расписание поездов дальнего следования", url: "flights_train.html" },
+        { text: "Междугородние автобусы и автовокзалы", url: "flights_bus.html" },
+        { text: "Покупка, бронирование и онлайн-регистрация билетов", url: "tickets.html" }
+    ];
+
+    matches.forEach(item => {
+        let li = document.createElement('li');
+        li.innerHTML = `<a href="${item.url}">${item.text}</a>`;
+        resultList.appendChild(li);
+    });
+}
+</script>
+
+<footer>
+    <p>&copy; 2026 Система заказа билетов. Все права защищены.</p>
+</footer>
+
+</body>
+</html>

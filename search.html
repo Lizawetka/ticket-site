@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Поиск - Система заказа билетов</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f6f9; color: #333; }
+        header { background: #004080; color: white; padding: 20px; text-align: center; }
+        nav { background: #0059b3; padding: 10px; text-align: center; }
+        nav a { color: white; margin: 0 8px; text-decoration: none; font-weight: bold; font-size: 14px; }
+        nav a:hover { text-decoration: underline; color: #ffeb3b; }
+        .container { max-width: 1000px; margin: 20px auto; background: white; padding: 25px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        h1 { color: #004080; font-size: 28px; }
+        h2 { color: #0059b3; font-size: 22px; border-bottom: 2px solid #e9ecef; padding-bottom: 5px; }
+        input[type="text"] { padding: 8px; width: 60%; font-size: 16px; border: 1px solid #ccc; border-radius: 4px; }
+        input[type="submit"] { padding: 8px 15px; background: #004080; color: white; border: none; font-size: 16px; border-radius: 4px; cursor: pointer; }
+        footer { text-align: center; padding: 15px; background: #e9ecef; margin-top: 20px; font-size: 13px; color: #666; }
+    </style>
+</head>
+<body>
+<header><h1>Поиск по сайту</h1><p>Сервис поиска ключевых слов</p></header>
+<nav>
+    <a href="index.html">Главная</a>
+    <a href="about.html">О проекте</a>
+    <a href="transport.html">Виды транспорта</a>
+    <a href="flights.html">Номера рейсов</a>
+    <a href="tickets.html">Билеты</a>
+    <a href="customers.html">Заказчики</a>
+    <a href="search.html">Поиск</a>
+    <a href="links.html">Ссылки</a>
+    <a href="news.html">Новости</a>
+    <a href="contacts.html">Контакты</a>
+</nav>
+<div class="container">
+    <h2>Поиск информации</h2>
+    <p>Введите ключевое слово (например: <em>самолет</em>, <em>билет</em>, <em>рейс</em>):</p>
+    <form action="#" method="GET">
+        <input type="text" name="q" placeholder="Поиск по сайту...">
+        <input type="submit" value="Найти">
+    </form>
+    <p style="margin-top: 20px; color: #666; font-size: 14px;">Поиск работает на базе ключевых слов HTML-страниц.</p>
+</div>
+<footer><p>&copy; 2026 Лабораторная работа №1</p></footer>
+</body>
+</html>

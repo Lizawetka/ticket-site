@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Табло электричек - Путешествуйте выгодно</title>
+    <style>
+        :root {
+            --primary: #ff6b6b;
+            --secondary: #4834d4;
+            --accent: #00d2d3;
+            --warning: #feca57;
+            --dark: #222f3e;
+            --light: #f1f2f6;
+        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: var(--light); color: var(--dark); }
+        
+        header { 
+            background: linear-gradient(135deg, var(--secondary), var(--primary)); 
+            color: white; 
+            padding: 30px 20px; 
+            text-align: center; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        header h1 { font-size: 30px; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 1px; }
+
+        .nav-grid {
+            max-width: 1000px;
+            margin: -25px auto 20px auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+        .nav-card {
+            background: white;
+            padding: 15px 10px;
+            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: bold;
+            font-size: 14px;
+            transition: transform 0.3s, background 0.3s, color 0.3s;
+            border-bottom: 4px solid var(--primary);
+        }
+        .nav-card:hover { transform: translateY(-5px); background: var(--secondary); color: white; }
+
+        .container { max-width: 1100px; margin: 20px auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); overflow-x: auto; }
+        h2 { color: var(--secondary); font-size: 24px; margin-top: 0; border-bottom: 3px solid var(--warning); padding-bottom: 8px; display: inline-block; }
+
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 14px; white-space: nowrap; }
+        th, td { border: 1px solid #e4e7eb; padding: 10px 12px; text-align: left; }
+        th { background-color: var(--secondary); color: white; }
+        tr:nth-child(even) { background-color: #f8f9fa; }
+        
+        .status-ok { color: #27ae60; font-weight: bold; }
+        .status-board { color: #2980b9; font-weight: bold; }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 15px;
+            background: var(--accent);
+            color: var(--dark);
+            padding: 8px 15px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .back-btn:hover { background: #01b8b9; color: white; }
+
+        footer { text-align: center; padding: 20px; background: var(--dark); color: white; margin-top: 40px; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Пригородный вокзал: Табло электричек</h1>
+    <p>Расписание электропоездов и экспрессов</p>
+</header>
+
+<nav class="nav-grid">
+    <a href="index.html" class="nav-card">🏠 Главная</a>
+    <a href="transport.html" class="nav-card">🚆 Транспорт</a>
+    <a href="flights_plane.html" class="nav-card">✈️ Самолеты</a>
+    <a href="flights_train.html" class="nav-card">🚅 Поезда</a>
+    <a href="flights_bus.html" class="nav-card">🚌 Автобусы</a>
+    <a href="flights_electric.html" class="nav-card" style="background: var(--secondary); color: white;">⚡ Электрички</a>
+    <a href="tickets.html" class="nav-card">🎟️ Билеты</a>
+    <a href="customers.html" class="nav-card">👤 Заказчики</a>
+    <a href="contacts.html" class="nav-card">📞 Контакты</a>
+</nav>
+
+<div class="container">
+    <a href="transport.html" class="back-btn">&larr; Назад к выбору транспорта</a>
+    <h2>Расписание пригородных электропоездов</h2>
+    
+    <table>
+        <tr>
+            <th>Дата</th>
+            <th>Направление / Станция</th>
+            <th>№ рейса</th>
+            <th>Категория</th>
+            <th>Посадка</th>
+            <th>Отправление (расп.)</th>
+            <th>Фактическое время</th>
+            <th>Статус рейса</th>
+            <th>Платформа</th>
+        </tr>
+        <tr><td>11.10</td><td>ОДИНЦОВО (МЦД-1)</td><td>6101</td><td>ЭЛЕКТРОПОЕЗД</td><td>05:25</td><td>05:35</td><td>05:35</td><td><span class="status-ok">ОТПРАВИЛСЯ</span></td><td>Платформа 1</td></tr>
+        <tr><td>11.10</td><td>ПОДОЛЬСК (МЦД-2)</td><td>6203</td><td>ЭЛЕКТРОПОЕЗД</td><td>05:40</td><td>05:50</td><td>05:50</td><td><span class="status-ok">ОТПРАВИЛСЯ</span></td><td>Платформа 2</td></tr>
+        <tr><td>11.10</td><td>АЭРОПОРТ ШЕРЕМЕТЬЕВО</td><td>7101</td><td>АЭРОЭКСПРЕСС</td><td>05:50</td><td>06:00</td><td>06:00</td><td><span class="status-ok">ОТПРАВИЛСЯ</span></td><td>Терминал А</td></tr>
+        <tr><td>11.10</td><td>РАМЕНСКОЕ</td><td>6305</td><td>ЭЛЕКТРОПОЕЗД</td><td>06:05</td><td>06:15</td><td>06:15</td><td><span class="status-ok">ОТПРАВИЛСЯ</span></td><td>Платформа 3</td></tr>
+        <tr><td>11.10</td><td>СЕРГИЕВ ПОСАД</td><td>6407</td><td>ЭКСПРЕСС</td><td>06:20</td><td>06:30</td><td>06:30</td><td><span class="status-ok">ОТПРАВИЛСЯ</span></td><td>Платформа 4</td></tr>
+        <tr><td>11.10</td><td>АЭРОПОРТ ДОМОДЕДОВО</td><td>7203</td><td>АЭРОЭКСПРЕСС</td><td>06:40</td><td>06:50</td><td>06:50</td><td><span class="status-ok">ОТПРАВИЛСЯ</span></td><td>Терминал Б</td></tr>
+        <tr><td>11.10</td><td>НАХАБИНО</td><td>6109</td><td>ЭЛЕКТРОПОЕЗД</td><td>07:00</td><td>07:10</td><td>07:10</td><td><span class="status-ok">ОТПРАВИЛСЯ</span></td><td>Платформа 1</td></tr>
+        <tr><td>11.10</td><td>ЗЕЛЕНОГРАД (КРЮКОВО)</td><td>6511</td><td>ЭКСПРЕСС</td><td>07:15</td><td>07:25</td><td>07:25</td><td><span class="status-ok">ОТПРАВИЛСЯ</span></td><td>Платформа 2</td></tr>
+        <tr><td>11.10</td><td>ТУЛА-1</td><td>7031</td><td>РЕГИОНАЛЬНЫЙ ЭКСПРЕСС</td><td>07:35</td><td>07:45</td><td>07:45</td><td><span class="status-ok">ОТПРАВИЛСЯ</span></td><td>Платформа 5</td></tr>
+        <tr><td>11.10</td><td>ВЛАДИМИР</td><td>7091</td><td>ФИРМЕННЫЙ ЭКСПРЕСС</td><td>08:15</td><td>08:25</td><td>08:25</td><td><span class="status-ok">ОТПРАВИЛСЯ</span></td><td>Платформа 3</td></tr>
+        <tr><td>11.10</td><td>АЭРОПОРТ ВНУКОВО</td><td>7301</td><td>АЭРОЭКСПРЕСС</td><td>08:50</td><td>09:00</td><td></td><td><span class="status-board">ПОСАДКА</span></td><td>Терминал В</td></tr>
+        <tr><td>11.10</td><td>АЛАТУРИ (МЦД-3)</td><td>6605</td><td>ЭЛЕКТРОПОЕЗД</td><td>09:10</td><td>09:20</td><td></td><td><span class="status-board">ПОСАДКА</span></td><td>Платформа 4</td></tr>
+    </table>
+</div>
+
+<footer>
+    <p>&copy; 2026 Система заказа билетов. Все права защищены.</p>
+</footer>
+
+</body>
+</html>

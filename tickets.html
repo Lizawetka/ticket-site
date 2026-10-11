@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Поиск билетов - Путешествуйте выгодно</title>
+    <style>
+        :root {
+            --primary: #ff6b6b;
+            --secondary: #4834d4;
+            --accent: #00d2d3;
+            --warning: #feca57;
+            --dark: #222f3e;
+            --light: #f1f2f6;
+        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: var(--light); color: var(--dark); }
+        
+        header { 
+            background: linear-gradient(135deg, var(--secondary), var(--primary)); 
+            color: white; 
+            padding: 30px 20px; 
+            text-align: center; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        header h1 { font-size: 30px; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 1px; }
+
+        .nav-grid {
+            max-width: 1000px;
+            margin: -25px auto 20px auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+        .nav-card {
+            background: white;
+            padding: 15px 10px;
+            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: bold;
+            font-size: 14px;
+            transition: transform 0.3s, background 0.3s, color 0.3s;
+            border-bottom: 4px solid var(--primary);
+        }
+        .nav-card:hover { transform: translateY(-5px); background: var(--secondary); color: white; }
+
+        .container { max-width: 950px; margin: 20px auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        
+        /* Вкладки */
+        .tabs-header {
+            display: flex;
+            gap: 30px;
+            border-bottom: 2px solid #e4e7eb;
+            margin-bottom: 25px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .tab-link {
+            padding-bottom: 10px;
+            color: #718093;
+            text-decoration: none;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+        }
+        .tab-link.active {
+            color: var(--secondary);
+            border-bottom-color: var(--secondary);
+        }
+        .tab-link:hover { color: var(--secondary); }
+
+        .search-box {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #e4e7eb;
+            margin-bottom: 30px;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        .form-group { display: flex; flex-direction: column; }
+        .form-group label { font-size: 13px; font-weight: 600; color: #57606f; margin-bottom: 5px; }
+        .form-control { padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 15px; background: white; }
+        
+        .btn-submit {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.2s;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+        }
+        .btn-submit:hover { background: #3b2bc5; color: white; }
+
+        .filters-tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+        .tag-btn {
+            background: #edf2f7;
+            border: 1px solid #cbd5e0;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            color: #4a5568;
+            text-decoration: none;
+        }
+
+        footer { text-align: center; padding: 20px; background: var(--dark); color: white; margin-top: 40px; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Бронирование и покупка билетов</h1>
+    <p>Поиск и оформление проездных документов</p>
+</header>
+
+<nav class="nav-grid">
+    <a href="index.html" class="nav-card">🏠 Главная</a>
+    <a href="transport.html" class="nav-card">🚆 Транспорт</a>
+    <a href="flights_plane.html" class="nav-card">✈️ Рейсы</a>
+    <a href="tickets.html" class="nav-card" style="background: var(--secondary); color: white;">🎟️ Билеты</a>
+    <a href="customers.html" class="nav-card">👤 Заказчики</a>
+    <a href="contacts.html" class="nav-card">📞 Контакты</a>
+</nav>
+
+<div class="container">
+    <!-- Вкладки интерфейса -->
+    <div class="tabs-header">
+        <a href="tickets.html" class="tab-link active">Поиск билетов</a>
+        <a href="tickets_register.html" class="tab-link">Онлайн-регистрация</a>
+        <a href="tickets_manage.html" class="tab-link">Управление бронированием</a>
+    </div>
+
+    <!-- Форма поиска -->
+    <div class="search-box">
+        <div class="form-row">
+            <div class="form-group">
+                <label>Вид транспорта</label>
+                <select class="form-control">
+                    <option>✈️ Самолет</option>
+                    <option>🚆 Поезд</option>
+                    <option>🚌 Автобус</option>
+                    <option>⚡ Электричка</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Откуда</label>
+                <input type="text" class="form-control" value="Москва">
+            </div>
+            <div class="form-group">
+                <label>Куда</label>
+                <input type="text" class="form-control" placeholder="Санкт-Петербург">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label>Дата отправления</label>
+                <input type="date" class="form-control" value="2026-10-15">
+            </div>
+            <div class="form-group">
+                <label>Пассажиры и класс</label>
+                <select class="form-control">
+                    <option>1 пассажир, Эконом</option>
+                    <option>1 пассажир, Бизнес</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="filters-tags">
+            <a href="#" class="tag-btn">+ Перелет</a>
+            <a href="#" class="tag-btn">+ За мили</a>
+            <a href="#" class="tag-btn">+ Промокод</a>
+        </div>
+    </div>
+
+    <a href="tickets_register.html" class="btn-submit">Найти билет и перейти к регистрации</a>
+</div>
+
+<footer>
+    <p>&copy; 2026 Система заказа билетов. Все права защищены.</p>
+</footer>
+
+</body>
+</html>

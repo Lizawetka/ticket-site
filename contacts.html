@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Контакты - Путешествуйте выгодно</title>
+    <style>
+        :root {
+            --primary: #ff6b6b;
+            --secondary: #4834d4;
+            --accent: #00d2d3;
+            --warning: #feca57;
+            --dark: #222f3e;
+            --light: #f1f2f6;
+        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: var(--light); color: var(--dark); }
+        
+        header { 
+            background: linear-gradient(135deg, var(--secondary), var(--primary)); 
+            color: white; 
+            padding: 30px 20px; 
+            text-align: center; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        header h1 { font-size: 30px; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 1px; }
+
+        .nav-grid {
+            max-width: 1000px;
+            margin: -25px auto 20px auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+        .nav-card {
+            background: white;
+            padding: 15px 10px;
+            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: bold;
+            font-size: 14px;
+            transition: transform 0.3s, background 0.3s, color 0.3s;
+            border-bottom: 4px solid var(--primary);
+        }
+        .nav-card:hover { transform: translateY(-5px); background: var(--secondary); color: white; }
+
+        .container { max-width: 950px; margin: 20px auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        
+        h2 { color: var(--secondary); font-size: 24px; margin-top: 0; border-bottom: 3px solid var(--warning); padding-bottom: 8px; display: inline-block; }
+        h3 { color: var(--secondary); margin-top: 25px; border-bottom: 2px solid var(--warning); padding-bottom: 5px; }
+
+        .support-card {
+            background: #f8f9fa;
+            border-left: 5px solid var(--secondary);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        .support-card p { margin: 8px 0; }
+        .support-card a { color: var(--secondary); font-weight: bold; text-decoration: none; }
+        .support-card a:hover { text-decoration: underline; }
+
+        .form-group { display: flex; flex-direction: column; margin-bottom: 15px; }
+        .form-group label { font-size: 14px; font-weight: 600; color: #57606f; margin-bottom: 5px; }
+        .form-control { padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 15px; background: white; }
+        .form-control:focus { outline: none; border-color: var(--secondary); box-shadow: 0 0 5px rgba(72, 52, 212, 0.2); }
+
+        .btn-submit {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.2s;
+        }
+        .btn-submit:hover { background: #3b2bc5; }
+
+        footer { text-align: center; padding: 20px; background: var(--dark); color: white; margin-top: 40px; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Контакты и поддержка</h1>
+    <p>Свяжитесь с нами или оставьте отзыв</p>
+</header>
+
+<nav class="nav-grid">
+    <a href="index.html" class="nav-card">🏠 Главная</a>
+    <a href="transport.html" class="nav-card">🚆 Транспорт</a>
+    <a href="flights_plane.html" class="nav-card">✈️ Рейсы</a>
+    <a href="tickets.html" class="nav-card">🎟️ Билеты</a>
+    <a href="customers.html" class="nav-card">👤 Заказчики</a>
+    <a href="contacts.html" class="nav-card" style="background: var(--secondary); color: white;">📞 Контакты</a>
+</nav>
+
+<div class="container">
+    <h2>Свяжитесь с нами</h2>
+    
+    <div class="support-card">
+        <p>При возникновении каких-либо вопросов, проблем или пожеланий обращайтесь по электронной почте: <a href="mailto:support@tickets-lab.ru">support@tickets-lab.ru</a></p>
+        <p>Или звоните на горячую линию по телефону: <strong>+7(999)136-14-96</strong></p>
+        <p style="margin-top: 10px; font-size: 14px; color: #666;">Наша служба поддержки работает ежедневно, без перерывов и выходных.</p>
+    </div>
+
+    <h3>Гостевая книга (Оставьте отзыв)</h3>
+    <form action="#" method="POST" onsubmit="alert('Спасибо! Ваш отзыв успешно добавлен в гостевую книгу.'); return false;">
+        <div class="form-group">
+            <label>Ваше имя:</label>
+            <input type="text" class="form-control" placeholder="Введите ваше имя..." required>
+        </div>
+        
+        <div class="form-group">
+            <label>Ваш отзыв / сообщение:</label>
+            <textarea class="form-control" rows="5" placeholder="Напишите комментарий или предложение..." required></textarea>
+        </div>
+        
+        <button type="submit" class="btn-submit">Отправить отзыв</button>
+    </form>
+</div>
+
+<footer>
+    <p>&copy; 2026 Система заказа билетов. Все права защищены.</p>
+</footer>
+
+</body>
+</html>
