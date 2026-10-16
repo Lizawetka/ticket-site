@@ -14,43 +14,50 @@
         }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: var(--light); color: var(--dark); }
         
+        .labs-top-bar { background: #2d3436; padding: 4px 15px; text-align: right; font-size: 11px; }
+        .labs-top-bar span { color: #b2bec3; margin-right: 8px; }
+        .labs-top-bar a { color: #dfe6e9; text-decoration: none; padding: 2px 6px; border-radius: 4px; background: rgba(255,255,255,0.1); margin-left: 4px; }
+        .labs-top-bar a:hover { background: rgba(255,255,255,0.25); color: white; }
+
         header { 
             background: linear-gradient(135deg, var(--secondary), var(--primary)); 
             color: white; 
-            padding: 30px 20px; 
+            padding: 30px 20px 50px 20px; 
             text-align: center; 
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
-        header h1 { font-size: 30px; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 1px; }
+        header h1 { font-size: 32px; margin: 0 0 8px 0; text-transform: uppercase; letter-spacing: 2px; }
+        header p { font-size: 16px; margin: 0; opacity: 0.9; }
 
-        .nav-grid {
-            max-width: 1000px;
-            margin: -25px auto 20px auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 12px;
+        .nav-container {
+            max-width: 1100px;
+            margin: -30px auto 30px auto;
             padding: 0 20px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
             position: relative;
             z-index: 10;
         }
-        .nav-card {
+        .nav-card-btn {
             background: white;
-            padding: 15px 10px;
-            text-align: center;
-            border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-            text-decoration: none;
             color: var(--dark);
-            font-weight: bold;
+            padding: 12px 18px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
             font-size: 14px;
-            transition: transform 0.3s, background 0.3s, color 0.3s;
-            border-bottom: 4px solid var(--primary);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.2s, background 0.2s, color 0.2s;
         }
-        .nav-card:hover { transform: translateY(-5px); background: var(--secondary); color: white; }
+        .nav-card-btn:hover, .nav-card-btn.active { transform: translateY(-3px); background: var(--secondary); color: white; }
 
         .container { max-width: 950px; margin: 20px auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        
-        h2 { color: var(--secondary); font-size: 24px; margin-top: 0; border-bottom: 3px solid var(--warning); padding-bottom: 8px; display: inline-block; }
+        h2 { color: var(--secondary); font-size: 22px; border-bottom: 3px solid var(--warning); padding-bottom: 8px; display: inline-block; margin-top: 0; }
         h3 { color: var(--secondary); margin-top: 25px; border-bottom: 2px solid var(--warning); padding-bottom: 5px; }
 
         .support-card {
@@ -59,18 +66,16 @@
             padding: 20px;
             border-radius: 8px;
             margin-bottom: 30px;
-            font-size: 16px;
+            font-size: 15px;
             line-height: 1.6;
         }
         .support-card p { margin: 8px 0; }
         .support-card a { color: var(--secondary); font-weight: bold; text-decoration: none; }
-        .support-card a:hover { text-decoration: underline; }
 
         .form-group { display: flex; flex-direction: column; margin-bottom: 15px; }
         .form-group label { font-size: 14px; font-weight: 600; color: #57606f; margin-bottom: 5px; }
         .form-control { padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 15px; background: white; }
-        .form-control:focus { outline: none; border-color: var(--secondary); box-shadow: 0 0 5px rgba(72, 52, 212, 0.2); }
-
+        
         .btn-submit {
             background: var(--secondary);
             color: white;
@@ -81,27 +86,35 @@
             border-radius: 6px;
             cursor: pointer;
             width: 100%;
-            transition: background 0.2s;
         }
         .btn-submit:hover { background: #3b2bc5; }
 
-        footer { text-align: center; padding: 20px; background: var(--dark); color: white; margin-top: 40px; font-size: 14px; }
+        footer { text-align: center; padding: 15px; background: var(--dark); color: white; margin-top: 40px; font-size: 13px; }
     </style>
 </head>
 <body>
+
+<div class="labs-top-bar">
+    <span>Лабораторные:</span>
+    <a href="lab2.html">№2</a>
+    <a href="lab3.html">№3</a>
+    <a href="lab4.html">№4</a>
+</div>
 
 <header>
     <h1>Контакты и поддержка</h1>
     <p>Свяжитесь с нами или оставьте отзыв</p>
 </header>
 
-<nav class="nav-grid">
-    <a href="index.html" class="nav-card">🏠 Главная</a>
-    <a href="transport.html" class="nav-card">🚆 Транспорт</a>
-    <a href="flights_plane.html" class="nav-card">✈️ Рейсы</a>
-    <a href="tickets.html" class="nav-card">🎟️ Билеты</a>
-    <a href="customers.html" class="nav-card">👤 Заказчики</a>
-    <a href="contacts.html" class="nav-card" style="background: var(--secondary); color: white;">📞 Контакты</a>
+<nav class="nav-container">
+    <a href="index.html" class="nav-card-btn">🏠 Главная</a>
+    <a href="transport.html" class="nav-card-btn">🚆 Транспорт</a>
+    <a href="flights_plane.html" class="nav-card-btn">✈️ Рейсы</a>
+    <a href="tickets.html" class="nav-card-btn">🎟️ Билеты</a>
+    <a href="customers.html" class="nav-card-btn">👤 Заказчики</a>
+    <a href="search.html" class="nav-card-btn">🔍 Поиск</a>
+    <a href="links.html" class="nav-card-btn">🔗 Ссылки</a>
+    <a href="contacts.html" class="nav-card-btn active">📞 Контакты</a>
 </nav>
 
 <div class="container">
@@ -110,11 +123,10 @@
     <div class="support-card">
         <p>При возникновении каких-либо вопросов, проблем или пожеланий обращайтесь по электронной почте: <a href="mailto:support@tickets-lab.ru">support@tickets-lab.ru</a></p>
         <p>Или звоните на горячую линию по телефону: <strong>+7(999)136-14-96</strong></p>
-        <p style="margin-top: 10px; font-size: 14px; color: #666;">Наша служба поддержки работает ежедневно, без перерывов и выходных.</p>
     </div>
 
     <h3>Гостевая книга (Оставьте отзыв)</h3>
-    <form action="#" method="POST" onsubmit="alert('Спасибо! Ваш отзыв успешно добавлен в гостевую книгу.'); return false;">
+    <form action="#" method="POST" onsubmit="alert('Спасибо! Ваш отзыв успешно добавлен.'); return false;">
         <div class="form-group">
             <label>Ваше имя:</label>
             <input type="text" class="form-control" placeholder="Введите ваше имя..." required>
@@ -122,7 +134,7 @@
         
         <div class="form-group">
             <label>Ваш отзыв / сообщение:</label>
-            <textarea class="form-control" rows="5" placeholder="Напишите комментарий или предложение..." required></textarea>
+            <textarea class="form-control" rows="5" placeholder="Напишите комментарий..." required></textarea>
         </div>
         
         <button type="submit" class="btn-submit">Отправить отзыв</button>

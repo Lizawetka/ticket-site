@@ -2,44 +2,165 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Поиск - Система заказа билетов</title>
+    <title>Поиск по сайту - Путешествуйте выгодно</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f6f9; color: #333; }
-        header { background: #004080; color: white; padding: 20px; text-align: center; }
-        nav { background: #0059b3; padding: 10px; text-align: center; }
-        nav a { color: white; margin: 0 8px; text-decoration: none; font-weight: bold; font-size: 14px; }
-        nav a:hover { text-decoration: underline; color: #ffeb3b; }
-        .container { max-width: 1000px; margin: 20px auto; background: white; padding: 25px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-        h1 { color: #004080; font-size: 28px; }
-        h2 { color: #0059b3; font-size: 22px; border-bottom: 2px solid #e9ecef; padding-bottom: 5px; }
-        input[type="text"] { padding: 8px; width: 60%; font-size: 16px; border: 1px solid #ccc; border-radius: 4px; }
-        input[type="submit"] { padding: 8px 15px; background: #004080; color: white; border: none; font-size: 16px; border-radius: 4px; cursor: pointer; }
-        footer { text-align: center; padding: 15px; background: #e9ecef; margin-top: 20px; font-size: 13px; color: #666; }
+        :root {
+            --primary: #ff6b6b;
+            --secondary: #4834d4;
+            --accent: #00d2d3;
+            --warning: #feca57;
+            --dark: #222f3e;
+            --light: #f1f2f6;
+        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: var(--light); color: var(--dark); }
+        
+        .labs-top-bar { background: #2d3436; padding: 4px 15px; text-align: right; font-size: 11px; }
+        .labs-top-bar span { color: #b2bec3; margin-right: 8px; }
+        .labs-top-bar a { color: #dfe6e9; text-decoration: none; padding: 2px 6px; border-radius: 4px; background: rgba(255,255,255,0.1); margin-left: 4px; }
+        .labs-top-bar a:hover { background: rgba(255,255,255,0.25); color: white; }
+
+        header { 
+            background: linear-gradient(135deg, var(--secondary), var(--primary)); 
+            color: white; 
+            padding: 30px 20px 50px 20px; 
+            text-align: center; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        header h1 { font-size: 32px; margin: 0 0 8px 0; text-transform: uppercase; letter-spacing: 2px; }
+        header p { font-size: 16px; margin: 0; opacity: 0.9; }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: -30px auto 30px auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            position: relative;
+            z-index: 10;
+        }
+        .nav-card-btn {
+            background: white;
+            color: var(--dark);
+            padding: 12px 18px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.2s, background 0.2s, color 0.2s;
+        }
+        .nav-card-btn:hover, .nav-card-btn.active { transform: translateY(-3px); background: var(--secondary); color: white; }
+
+        .container { max-width: 950px; margin: 20px auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        h2 { color: var(--secondary); font-size: 22px; border-bottom: 3px solid var(--warning); padding-bottom: 8px; display: inline-block; margin-top: 0; }
+
+        .search-container-main {
+            background: #f8f9fa;
+            border: 2px solid #e4e7eb;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .search-form { display: flex; gap: 12px; }
+        .search-input { flex: 1; padding: 14px; border: 1px solid #ccc; border-radius: 6px; font-size: 15px; }
+        .search-btn { background: var(--secondary); color: white; border: none; padding: 14px 25px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 15px; }
+        .search-btn:hover { background: #3b2bc5; }
+
+        #full-search-results {
+            margin-top: 20px;
+            padding: 20px;
+            background: #e8f4fd;
+            border-left: 4px solid var(--secondary);
+            border-radius: 6px;
+            display: none;
+        }
+        #full-search-results h3 { margin: 0 0 10px 0; color: var(--secondary); font-size: 16px; }
+        #full-search-results ul { margin: 0; padding-left: 20px; }
+        #full-search-results li { margin-bottom: 8px; font-size: 14px; }
+        #full-search-results a { color: var(--secondary); font-weight: bold; text-decoration: none; }
+
+        footer { text-align: center; padding: 15px; background: var(--dark); color: white; margin-top: 40px; font-size: 13px; }
     </style>
 </head>
 <body>
-<header><h1>Поиск по сайту</h1><p>Сервис поиска ключевых слов</p></header>
-<nav>
-    <a href="index.html">Главная</a>
-    <a href="about.html">О проекте</a>
-    <a href="transport.html">Виды транспорта</a>
-    <a href="flights.html">Номера рейсов</a>
-    <a href="tickets.html">Билеты</a>
-    <a href="customers.html">Заказчики</a>
-    <a href="search.html">Поиск</a>
-    <a href="links.html">Ссылки</a>
-    <a href="news.html">Новости</a>
-    <a href="contacts.html">Контакты</a>
-</nav>
-<div class="container">
-    <h2>Поиск информации</h2>
-    <p>Введите ключевое слово (например: <em>самолет</em>, <em>билет</em>, <em>рейс</em>):</p>
-    <form action="#" method="GET">
-        <input type="text" name="q" placeholder="Поиск по сайту...">
-        <input type="submit" value="Найти">
-    </form>
-    <p style="margin-top: 20px; color: #666; font-size: 14px;">Поиск работает на базе ключевых слов HTML-страниц.</p>
+
+<div class="labs-top-bar">
+    <span>Лабораторные:</span>
+    <a href="lab2.html">№2</a>
+    <a href="lab3.html">№3</a>
+    <a href="lab4.html">№4</a>
 </div>
-<footer><p>&copy; 2026 Лабораторная работа №1</p></footer>
+
+<header>
+    <h1>Поиск по сайту</h1>
+    <p>Найти расписание, рейсы или информацию о билетах</p>
+</header>
+
+<nav class="nav-container">
+    <a href="index.html" class="nav-card-btn">🏠 Главная</a>
+    <a href="transport.html" class="nav-card-btn">🚆 Транспорт</a>
+    <a href="flights_plane.html" class="nav-card-btn">✈️ Рейсы</a>
+    <a href="tickets.html" class="nav-card-btn">🎟️ Билеты</a>
+    <a href="customers.html" class="nav-card-btn">👤 Заказчики</a>
+    <a href="search.html" class="nav-card-btn active">🔍 Поиск</a>
+    <a href="links.html" class="nav-card-btn">🔗 Ссылки</a>
+    <a href="contacts.html" class="nav-card-btn">📞 Контакты</a>
+</nav>
+
+<div class="container">
+    <h2>Расширенный поиск</h2>
+    <p style="color: #57606f;">Введите интересующий вас запрос для поиска по всем разделам портала:</p>
+
+    <div class="search-container-main">
+        <form class="search-form" onsubmit="performSearch(event)">
+            <input type="text" id="main-search-input" class="search-input" placeholder="Например: самолет, поезд, москва, билет..." required>
+            <button type="submit" class="search-btn">Искать на сайте</button>
+        </form>
+
+        <div id="full-search-results">
+            <h3>Результаты поиска:</h3>
+            <ul id="full-search-list"></ul>
+        </div>
+    </div>
+</div>
+
+<script>
+function performSearch(event) {
+    event.preventDefault();
+    let query = document.getElementById('main-search-input').value.toLowerCase();
+    let resultsBox = document.getElementById('full-search-results');
+    let resultsList = document.getElementById('full-search-list');
+    
+    resultsList.innerHTML = "";
+    resultsBox.style.display = "block";
+
+    let db = [
+        { title: "Расписание и статус авиарейсов (Самолеты)", url: "flights_plane.html" },
+        { title: "Расписание поездов дальнего следования", url: "flights_train.html" },
+        { title: "Расписание междугородних автобусов", url: "flights_bus.html" },
+        { title: "Расписание пригородных электричек", url: "flights_electric.html" },
+        { title: "Бронирование и покупка билетов", url: "tickets.html" },
+        { title: "Контакты и служба поддержки", url: "contacts.html" }
+    ];
+
+    let found = db.filter(item => item.title.toLowerCase().includes(query) || query.length > 0);
+    
+    found.forEach(item => {
+        let li = document.createElement('li');
+        li.innerHTML = `<a href="${item.url}">${item.title}</a>`;
+        resultsList.appendChild(li);
+    });
+}
+</script>
+
+<footer>
+    <p>&copy; 2026 Система заказа билетов. Все права защищены.</p>
+</footer>
+
 </body>
 </html>

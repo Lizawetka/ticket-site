@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Личный кабинет заказчика - Путешествуйте выгодно</title>
+    <title>Кабинет заказчика - Путешествуйте выгодно</title>
     <style>
         :root {
             --primary: #ff6b6b;
@@ -14,45 +14,51 @@
         }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: var(--light); color: var(--dark); }
         
+        .labs-top-bar { background: #2d3436; padding: 4px 15px; text-align: right; font-size: 11px; }
+        .labs-top-bar span { color: #b2bec3; margin-right: 8px; }
+        .labs-top-bar a { color: #dfe6e9; text-decoration: none; padding: 2px 6px; border-radius: 4px; background: rgba(255,255,255,0.1); margin-left: 4px; }
+        .labs-top-bar a:hover { background: rgba(255,255,255,0.25); color: white; }
+
         header { 
             background: linear-gradient(135deg, var(--secondary), var(--primary)); 
             color: white; 
-            padding: 30px 20px; 
+            padding: 30px 20px 50px 20px; 
             text-align: center; 
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
-        header h1 { font-size: 30px; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 1px; }
+        header h1 { font-size: 32px; margin: 0 0 8px 0; text-transform: uppercase; letter-spacing: 2px; }
+        header p { font-size: 16px; margin: 0; opacity: 0.9; }
 
-        .nav-grid {
-            max-width: 1000px;
-            margin: -25px auto 20px auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 12px;
+        .nav-container {
+            max-width: 1100px;
+            margin: -30px auto 30px auto;
             padding: 0 20px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
             position: relative;
             z-index: 10;
         }
-        .nav-card {
+        .nav-card-btn {
             background: white;
-            padding: 15px 10px;
-            text-align: center;
-            border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-            text-decoration: none;
             color: var(--dark);
-            font-weight: bold;
+            padding: 12px 18px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
             font-size: 14px;
-            transition: transform 0.3s, background 0.3s, color 0.3s;
-            border-bottom: 4px solid var(--primary);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.2s, background 0.2s, color 0.2s;
         }
-        .nav-card:hover { transform: translateY(-5px); background: var(--secondary); color: white; }
+        .nav-card-btn:hover, .nav-card-btn.active { transform: translateY(-3px); background: var(--secondary); color: white; }
 
         .container { max-width: 950px; margin: 20px auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        h2 { color: var(--secondary); font-size: 22px; border-bottom: 3px solid var(--warning); padding-bottom: 8px; display: inline-block; margin-top: 0; }
         
-        h2 { color: var(--secondary); font-size: 24px; margin-top: 0; border-bottom: 3px solid var(--warning); padding-bottom: 8px; display: inline-block; }
-        
-        /* Карточка профиля заказчика */
         .profile-card {
             background: #f8f9fa;
             border: 1px solid #e4e7eb;
@@ -64,61 +70,52 @@
             gap: 20px;
         }
         .avatar {
-            width: 80px;
-            height: 80px;
-            background: var(--secondary);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-            font-weight: bold;
-            box-shadow: 0 4px 10px rgba(72, 52, 212, 0.3);
+            width: 80px; height: 80px;
+            background: var(--secondary); color: white;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 32px; font-weight: bold;
         }
         .profile-info h3 { margin: 0 0 5px 0; color: var(--dark); font-size: 20px; }
         .profile-info p { margin: 3px 0; color: #57606f; font-size: 14px; }
-        .badge {
-            background: var(--accent);
-            color: var(--dark);
-            padding: 3px 10px;
-            border-radius: 12px;
-            font-size: 12px;
-            font-weight: bold;
-            display: inline-block;
-            margin-top: 5px;
-        }
+        .badge { background: var(--accent); color: var(--dark); padding: 3px 10px; border-radius: 12px; font-size: 12px; font-weight: bold; display: inline-block; margin-top: 5px; }
 
-        /* Таблица поездок заказчика */
         h3 { color: var(--secondary); border-bottom: 2px solid var(--warning); padding-bottom: 5px; margin-top: 30px; }
         table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 14px; }
         th, td { border: 1px solid #e4e7eb; padding: 12px; text-align: left; }
         th { background-color: var(--secondary); color: white; }
         tr:nth-child(even) { background-color: #f8f9fa; }
 
-        footer { text-align: center; padding: 20px; background: var(--dark); color: white; margin-top: 40px; font-size: 14px; }
+        footer { text-align: center; padding: 15px; background: var(--dark); color: white; margin-top: 40px; font-size: 13px; }
     </style>
 </head>
 <body>
+
+<div class="labs-top-bar">
+    <span>Лабораторные:</span>
+    <a href="lab2.html">№2</a>
+    <a href="lab3.html">№3</a>
+    <a href="lab4.html">№4</a>
+</div>
 
 <header>
     <h1>Кабинет заказчика</h1>
     <p>Профиль пользователя и история поездок</p>
 </header>
 
-<nav class="nav-grid">
-    <a href="index.html" class="nav-card">🏠 Главная</a>
-    <a href="transport.html" class="nav-card">🚆 Транспорт</a>
-    <a href="flights_plane.html" class="nav-card">✈️ Рейсы</a>
-    <a href="tickets.html" class="nav-card">🎟️ Билеты</a>
-    <a href="customers.html" class="nav-card" style="background: var(--secondary); color: white;">👤 Заказчики</a>
-    <a href="contacts.html" class="nav-card">📞 Контакты</a>
+<nav class="nav-container">
+    <a href="index.html" class="nav-card-btn">🏠 Главная</a>
+    <a href="transport.html" class="nav-card-btn">🚆 Транспорт</a>
+    <a href="flights_plane.html" class="nav-card-btn">✈️ Рейсы</a>
+    <a href="tickets.html" class="nav-card-btn">🎟️ Билеты</a>
+    <a href="customers.html" class="nav-card-btn active">👤 Заказчики</a>
+    <a href="search.html" class="nav-card-btn">🔍 Поиск</a>
+    <a href="links.html" class="nav-card-btn">🔗 Ссылки</a>
+    <a href="contacts.html" class="nav-card-btn">📞 Контакты</a>
 </nav>
 
 <div class="container">
     <h2>Профиль зарегистрированного заказчика</h2>
     
-    <!-- Карточка пользователя -->
     <div class="profile-card">
         <div class="avatar">ИИ</div>
         <div class="profile-info">
@@ -153,14 +150,6 @@
             <td>002А (Сапсан)</td>
             <td>Москва &rarr; Санкт-Петербург</td>
             <td>02.09.2026</td>
-            <td><span style="color: #718093;">Поездка завершена</span></td>
-        </tr>
-        <tr>
-            <td>#052</td>
-            <td>🚌 Автобус</td>
-            <td>BUS-55</td>
-            <td>Москва &rarr; Владимир</td>
-            <td>14.07.2026</td>
             <td><span style="color: #718093;">Поездка завершена</span></td>
         </tr>
     </table>
