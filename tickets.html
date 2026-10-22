@@ -57,31 +57,14 @@
         .nav-card-btn:hover, .nav-card-btn.active { transform: translateY(-3px); background: var(--secondary); color: white; }
 
         .container { max-width: 950px; margin: 20px auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        h2 { color: var(--secondary); font-size: 22px; border-bottom: 3px solid var(--warning); padding-bottom: 8px; display: inline-block; margin-top: 0; }
         
-        .tabs-header {
-            display: flex;
-            gap: 30px;
-            border-bottom: 2px solid #e4e7eb;
-            margin-bottom: 25px;
-            font-size: 18px;
-            font-weight: bold;
-        }
-        .tab-link {
-            padding-bottom: 10px;
-            color: #718093;
-            text-decoration: none;
-            cursor: pointer;
-            border-bottom: 3px solid transparent;
-            margin-bottom: -2px;
-        }
-        .tab-link.active { color: var(--secondary); border-bottom-color: var(--secondary); }
-
         .search-box {
             background: #f8f9fa;
             padding: 20px;
             border-radius: 10px;
             border: 1px solid #e4e7eb;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
         .form-row {
             display: grid;
@@ -109,6 +92,31 @@
             display: block;
         }
         .btn-submit:hover { background: #3b2bc5; color: white; }
+
+        .ticket-extras {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 15px;
+            margin-top: 25px;
+        }
+        .extra-card {
+            background: #f8f9fa;
+            border: 1px solid #e4e7eb;
+            padding: 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--dark);
+            transition: all 0.2s;
+            display: block;
+        }
+        .extra-card:hover {
+            border-color: var(--secondary);
+            background: white;
+            box-shadow: 0 5px 15px rgba(72, 52, 212, 0.1);
+            transform: translateY(-2px);
+        }
+        .extra-card h4 { margin: 0 0 5px 0; color: var(--secondary); font-size: 15px; }
+        .extra-card p { margin: 0; font-size: 13px; color: #57606f; line-height: 1.4; }
 
         footer { text-align: center; padding: 15px; background: var(--dark); color: white; margin-top: 40px; font-size: 13px; }
     </style>
@@ -139,10 +147,7 @@
 </nav>
 
 <div class="container">
-    <div class="tabs-header">
-        <span class="tab-link active">Поиск билетов</span>
-    </div>
-
+    <h2>Поиск билетов</h2>
     <form action="tickets_register.html" method="GET">
         <div class="search-box">
             <div class="form-row">
@@ -182,6 +187,17 @@
 
         <button type="submit" class="btn-submit">Найти билет и перейти к регистрации</button>
     </form>
+
+    <div class="ticket-extras">
+        <a href="refund.html" class="extra-card">
+            <h4>🔄 Возврат и обмен билетов</h4>
+            <p>Условия отмены бронирования, удержания сборов и инструкции по возврату средств.</p>
+        </a>
+        <a href="insurance.html" class="extra-card">
+            <h4>🛡️ Страхование пассажиров</h4>
+            <p>Медицинская помощь, защита багажа и компенсация при задержке рейсов.</p>
+        </a>
+    </div>
 </div>
 
 <footer>

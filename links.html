@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Полезные ссылки - Путешествуйте выгодно</title>
+    <title>Полезные ссылки и партнеры - Путешествуйте выгодно</title>
     <style>
         :root {
             --primary: #ff6b6b;
@@ -58,6 +58,7 @@
 
         .container { max-width: 950px; margin: 20px auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
         h2 { color: var(--secondary); font-size: 22px; border-bottom: 3px solid var(--warning); padding-bottom: 8px; display: inline-block; margin-top: 0; }
+        h3 { color: var(--secondary); margin-top: 30px; border-bottom: 2px solid var(--warning); padding-bottom: 5px; }
 
         .links-grid {
             display: grid;
@@ -81,8 +82,21 @@
             box-shadow: 0 5px 15px rgba(72, 52, 212, 0.1);
             transform: translateY(-2px);
         }
-        .link-card h3 { margin: 0 0 5px 0; color: var(--secondary); font-size: 16px; }
+        .link-card h4 { margin: 0 0 5px 0; color: var(--secondary); font-size: 16px; }
         .link-card p { margin: 0; font-size: 13px; color: #57606f; }
+
+        .app-promo-box {
+            background: #f8f9fa;
+            border: 1px solid #e4e7eb;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .app-promo-box p { font-size: 14px; color: #57606f; line-height: 1.5; }
+        .app-stores { display: flex; justify-content: center; gap: 15px; margin-top: 15px; }
+        .store-btn { background: var(--dark); color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 14px; transition: background 0.2s; }
+        .store-btn:hover { background: var(--secondary); }
 
         footer { text-align: center; padding: 15px; background: var(--dark); color: white; margin-top: 40px; font-size: 13px; }
     </style>
@@ -97,8 +111,8 @@
 </div>
 
 <header>
-    <h1>Каталог ссылок</h1>
-    <p>Полезные ресурсы и партнеры сервиса</p>
+    <h1>Каталог ссылок и сервисы</h1>
+    <p>Полезные ресурсы и мобильное приложение</p>
 </header>
 
 <nav class="nav-container">
@@ -114,25 +128,32 @@
 
 <div class="container">
     <h2>Партнеры и внешние ресурсы</h2>
-    <p style="color: #57606f;">Если вы не смогли найти какую-либо информацию на нашем сайте, вы можете воспользоваться проверенными ресурсами:</p>
-
     <div class="links-grid">
         <a href="https://www.rzd.ru" target="_blank" class="link-card">
-            <h3>🚆 РЖД</h3>
-            <p>Официальный сайт поездов дальнего следования и покупка ж/д билетов.</p>
+            <h4>🚆 РЖД</h4>
+            <p>Официальный сайт поездов дальнего следования.</p>
         </a>
         <a href="https://www.aeroflot.ru" target="_blank" class="link-card">
-            <h3>✈️ Аэрофлот</h3>
-            <p>Ведущая авиакомпания России, международные и внутренние перелеты.</p>
+            <h4>✈️ Аэрофлот</h4>
+            <p>Ведущая авиакомпания России.</p>
         </a>
         <a href="https://www.pobeda.aero" target="_blank" class="link-card">
-            <h3>✈️ Победа</h3>
+            <h4>✈️ Победа</h4>
             <p>Популярный низкобюджетный лоукостер.</p>
         </a>
         <a href="https://troline.ru" target="_blank" class="link-card">
-            <h3>🚌 Славянский Экспресс</h3>
-            <p>Междугородние автобусные перевозки и расписание.</p>
+            <h4>🚌 Славянский Экспресс</h4>
+            <p>Междугородние автобусные перевозки.</p>
         </a>
+    </div>
+
+    <h3>📱 Мобильное приложение сервиса</h3>
+    <div class="app-promo-box">
+        <p>Управляйте своими бронированиями, получайте уведомления об изменении статуса рейсов и сохраняйте билеты в офлайн-доступ прямо с мобильного устройства.</p>
+        <div class="app-stores">
+            <a href="#" class="store-btn"> App Store</a>
+            <a href="#" class="store-btn">▶ Google Play</a>
+        </div>
     </div>
 </div>
 

@@ -30,14 +30,13 @@
             border-radius: 4px;
             background: rgba(255,255,255,0.1);
             margin-left: 4px;
-            transition: background 0.2s;
         }
         .labs-top-bar a:hover { background: rgba(255,255,255,0.25); color: white; }
 
         header { 
             background: linear-gradient(135deg, var(--secondary), var(--primary)); 
             color: white; 
-            padding: 30px 20px 50px 20px; 
+            padding: 30px 20px 40px 20px; 
             text-align: center; 
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
@@ -69,12 +68,8 @@
             gap: 8px;
             transition: transform 0.2s, background 0.2s, color 0.2s;
         }
-        .nav-card-btn:hover {
+        .nav-card-btn:hover, .nav-card-btn.active {
             transform: translateY(-3px);
-            background: var(--secondary);
-            color: white;
-        }
-        .nav-card-btn.active {
             background: var(--secondary);
             color: white;
         }
@@ -181,6 +176,16 @@
         #search-results ul { margin: 0; padding-left: 15px; }
         #search-results a { color: var(--secondary); font-weight: bold; text-decoration: none; }
 
+        .about-section {
+            background: #f8f9fa;
+            border: 1px solid #e4e7eb;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 25px;
+        }
+        .about-section h3 { margin-top: 0; color: var(--secondary); font-size: 16px; }
+        .about-section p { font-size: 14px; color: #57606f; line-height: 1.6; margin-bottom: 0; }
+
         .links-box {
             margin-top: 20px;
             background: #f8f9fa;
@@ -255,15 +260,15 @@
 
         <h3>📰 Свежие новости</h3>
         <div class="news-snippet">
-            <span class="news-date">16.10.2026</span>
+            <span class="news-date">22.10.2026</span>
             <a href="flights_plane.html" class="news-title">Открытие новых авиарейсов на юг России</a>
         </div>
         <div class="news-snippet">
-            <span class="news-date">15.10.2026</span>
+            <span class="news-date">21.10.2026</span>
             <a href="flights_train.html" class="news-title">Запуск двухэтажных поездов по графику</a>
         </div>
         <div class="news-snippet">
-            <span class="news-date">14.10.2026</span>
+            <span class="news-date">20.10.2026</span>
             <a href="tickets.html" class="news-title">Скидки 15% при покупке билетов онлайн</a>
         </div>
 
@@ -273,8 +278,8 @@
                 <tr><th>Пн</th><th>Вт</th><th>Ср</th><th>Чт</th><th>Пт</th><th>Сб</th><th>Вс</th></tr>
                 <tr><td class="muted">28</td><td class="muted">29</td><td class="muted">30</td><td>1</td><td>2</td><td>3</td><td>4</td></tr>
                 <tr><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td></tr>
-                <tr><td>12</td><td>13</td><td>14</td><td>15</td><td class="today">16</td><td>17</td><td>18</td></tr>
-                <tr><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td></tr>
+                <tr><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td></tr>
+                <tr><td>19</td><td>20</td><td>21</td><td class="today">22</td><td>23</td><td>24</td><td>25</td></tr>
                 <tr><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td><td class="muted">1</td></tr>
             </table>
         </div>
@@ -297,6 +302,11 @@
 
         <div class="promo-banner">
             🔥 Скидка 15% на все автобусные и железнодорожные направления!
+        </div>
+
+        <div class="about-section">
+            <h3>ℹ️ О компании</h3>
+            <p>Наша система объединяет расписания самолетов, поездов, автобусов и пригородных электричек на одной платформе. Мы гарантируем безопасность платежей, мгновенное оформление билетов и круглосуточную поддержку пассажиров.</p>
         </div>
 
         <div class="links-box">

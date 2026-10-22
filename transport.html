@@ -59,12 +59,12 @@
         .container { max-width: 1100px; margin: 20px auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
         h2 { color: var(--secondary); font-size: 22px; border-bottom: 3px solid var(--warning); padding-bottom: 8px; display: inline-block; margin-top: 0; }
 
-        /* Карточки выбора транспорта как на картинке */
         .transport-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 20px;
             margin-top: 25px;
+            margin-bottom: 35px;
         }
         .transport-card {
             background: #f8f9fa;
@@ -85,6 +85,19 @@
         }
         .transport-icon { font-size: 40px; margin-bottom: 15px; display: block; }
         .transport-title { font-size: 18px; font-weight: bold; color: var(--secondary); }
+
+        .baggage-section {
+            margin-top: 30px;
+            background: #f8f9fa;
+            border: 1px solid #e4e7eb;
+            padding: 25px;
+            border-radius: 10px;
+        }
+        .baggage-section h3 { margin-top: 0; color: var(--secondary); font-size: 18px; border-bottom: 2px solid var(--accent); padding-bottom: 5px; display: inline-block; }
+        .baggage-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-top: 15px; }
+        .baggage-card { background: white; padding: 15px; border-radius: 8px; border: 1px solid #e4e7eb; }
+        .baggage-card h4 { margin: 0 0 5px 0; color: var(--secondary); font-size: 15px; }
+        .baggage-card p { margin: 0; font-size: 13px; color: #57606f; line-height: 1.4; }
 
         footer { text-align: center; padding: 15px; background: var(--dark); color: white; margin-top: 40px; font-size: 13px; }
     </style>
@@ -118,7 +131,6 @@
     <h2>Категории перевозок</h2>
     <p style="color: #57606f; margin-top: 8px;">Нажмите на любую карточку транспорта, чтобы открыть подробное расписание и список рейсов:</p>
 
-    <!-- Пункт 2: Выбор транспорта карточками -->
     <div class="transport-grid">
         <a href="flights_plane.html" class="transport-card">
             <span class="transport-icon">✈️</span>
@@ -136,6 +148,24 @@
             <span class="transport-icon">⚡</span>
             <span class="transport-title">Электричка</span>
         </a>
+    </div>
+
+    <div class="baggage-section">
+        <h3>🎒 Нормы провоза багажа и ручной клади</h3>
+        <div class="baggage-grid">
+            <div class="baggage-card">
+                <h4>✈️ Самолет</h4>
+                <p>Ручная кладь до 10 кг (55х40х20 см). Багаж в багажном отсеке до 23 кг.</p>
+            </div>
+            <div class="baggage-card">
+                <h4>🚅 Поезд</h4>
+                <p>Ручная кладь весом до 36 кг под полкой или на местах для ручной клади.</p>
+            </div>
+            <div class="baggage-card">
+                <h4>🚌 Автобус</h4>
+                <p>Одно место багажа до 20 кг в багажном отделении и ручная кладь до 5 кг.</p>
+            </div>
+        </div>
     </div>
 </div>
 
