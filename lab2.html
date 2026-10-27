@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Лабораторная работа № 2 - Реестр рейсов</title>
+    <title>Лабораторная работа № 2 - Каталог рейсов</title>
     <style>
         :root {
             --primary: #ff6b6b;
@@ -95,7 +95,7 @@
 
 <header>
     <h1>Лабораторная работа № 2</h1>
-    <p>Динамическая генерация данных на основе XML и JavaScript</p>
+    <p>Каталог транспортных рейсов</p>
 </header>
 
 <nav class="nav-container">
@@ -110,8 +110,7 @@
 </nav>
 
 <div class="container">
-    <h2>Реестр транспортных рейсов (XML)</h2>
-    <p style="color: #57606f; margin-bottom: 20px;">Данные загружаются из встроенной XML-структуры с возможностью фильтрации и сортировки.</p>
+    <h2>Каталог транспортных рейсов</h2>
     
     <!-- Форма фильтрации и сортировки -->
     <div class="filter-form">
@@ -129,10 +128,8 @@
         <div class="filter-group">
             <label>Сортировать по:</label>
             <select id="sortBy" class="filter-control">
-                <option value="id">По умолчанию (ID)</option>
-                <option value="transport_type">Вид транспорта</option>
-                <option value="route">Маршрут</option>
-                <option value="date">Дата</option>
+                <option value="id">По умолчанию</option>
+                <option value="date">Дата отправления</option>
                 <option value="price">Цена</option>
             </select>
         </div>
@@ -140,8 +137,8 @@
         <div class="filter-group">
             <label>Порядок:</label>
             <select id="sortOrder" class="filter-control">
-                <option value="asc">По возрастанию</option>
-                <option value="desc">По убыванию</option>
+                <option value="asc">По возрастанию </option>
+                <option value="desc">По убыванию </option>
             </select>
         </div>
 
@@ -157,7 +154,6 @@
 </footer>
 
 <script>
-// Встроенные XML-данные, чтобы избежать ошибок загрузки файлов 404 на GitHub Pages
 const xmlString = `<?xml version="1.0" encoding="UTF-8"?>
 <transport_catalog>
     <trip><id>1</id><transport_type>Самолет</transport_type><route>Москва — Санкт-Петербург</route><date>25.10.2026</date><price>4500</price></trip>
@@ -205,6 +201,11 @@ function processData() {
             if (sortBy === 'id' || sortBy === 'price') {
                 valA = Number(valA);
                 valB = Number(valB);
+            } else if (sortBy === 'date') {
+                let partsA = valA.split('.');
+                let partsB = valB.split('.');
+                valA = Number(partsA[2] + partsA[1] + partsA[0]);
+                valB = Number(partsB[2] + partsB[1] + partsB[0]);
             }
 
             if (valA < valB) return sortOrder === 'asc' ? -1 : 1;
@@ -254,7 +255,6 @@ function processData() {
     }
 }
 
-// Запустить обработку при загрузке страницы
 window.onload = processData;
 </script>
 
