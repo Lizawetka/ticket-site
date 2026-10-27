@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Лабораторная работа № 2 - Реестр рейсов</title>
+    <style>
+        :root {
+            --primary: #ff6b6b;
+            --secondary: #4834d4;
+            --accent: #00d2d3;
+            --warning: #feca57;
+            --dark: #222f3e;
+            --light: #f1f2f6;
+        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: var(--light); color: var(--dark); }
+        
+        .labs-top-bar { background: #2d3436; padding: 4px 15px; text-align: right; font-size: 11px; }
+        .labs-top-bar span { color: #b2bec3; margin-right: 8px; }
+        .labs-top-bar a { color: #dfe6e9; text-decoration: none; padding: 2px 6px; border-radius: 4px; background: rgba(255,255,255,0.1); margin-left: 4px; }
+        .labs-top-bar a:hover { background: rgba(255,255,255,0.25); color: white; }
+
+        header { 
+            background: linear-gradient(135deg, var(--secondary), var(--primary)); 
+            color: white; 
+            padding: 30px 20px 50px 20px; 
+            text-align: center; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        header h1 { font-size: 32px; margin: 0 0 8px 0; text-transform: uppercase; letter-spacing: 2px; }
+        header p { font-size: 16px; margin: 0; opacity: 0.9; }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: -30px auto 30px auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            position: relative;
+            z-index: 10;
+        }
+        .nav-card-btn {
+            background: white;
+            color: var(--dark);
+            padding: 12px 18px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.2s, background 0.2s, color 0.2s;
+        }
+        .nav-card-btn:hover, .nav-card-btn.active { transform: translateY(-3px); background: var(--secondary); color: white; }
+
+        .container { max-width: 1000px; margin: 20px auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        h2 { color: var(--secondary); font-size: 22px; border-bottom: 3px solid var(--warning); padding-bottom: 8px; display: inline-block; margin-top: 0; }
+
+        .filter-form {
+            background: #f8f9fa;
+            border: 1px solid #e4e7eb;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            align-items: flex-end;
+        }
+        .filter-group { display: flex; flex-direction: column; }
+        .filter-group label { font-size: 13px; font-weight: 600; color: #57606f; margin-bottom: 5px; }
+        .filter-control { padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; background: white; }
+        .btn-filter { background: var(--secondary); color: white; border: none; padding: 10px 20px; border-radius: 6px; font-weight: bold; cursor: pointer; }
+        .btn-filter:hover { background: #3b2bc5; }
+
+        .schedule-table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 14px; }
+        .schedule-table th, .schedule-table td { border: 1px solid #e4e7eb; padding: 12px; text-align: left; }
+        .schedule-table th { background-color: var(--secondary); color: white; }
+        .schedule-table tr:nth-child(even) { background-color: #f8f9fa; }
+
+        footer { text-align: center; padding: 15px; background: var(--dark); color: white; margin-top: 40px; font-size: 13px; }
+    </style>
+</head>
+<body>
+
+<div class="labs-top-bar">
+    <span>Лабораторные:</span>
+    <a href="lab2.html">№2</a>
+    <a href="lab3.html">№3</a>
+    <a href="lab4.html">№4</a>
+</div>
+
+<header>
+    <h1>Лабораторная работа № 2</h1>
+    <p>Динамическая генерация данных на основе XML и JavaScript</p>
+</header>
+
+<nav class="nav-container">
+    <a href="index.html" class="nav-card-btn">🏠 Главная</a>
+    <a href="transport.html" class="nav-card-btn">🚆 Транспорт</a>
+    <a href="flights_plane.html" class="nav-card-btn">✈️ Рейсы</a>
+    <a href="tickets.html" class="nav-card-btn">🎟️ Билеты</a>
+    <a href="customers.html" class="nav-card-btn">👤 Заказчики</a>
+    <a href="search.html" class="nav-card-btn">🔍 Поиск</a>
+    <a href="links.html" class="nav-card-btn">🔗 Ссылки</a>
+    <a href="contacts.html" class="nav-card-btn">📞 Контакты</a>
+</nav>
+
+<div class="container">
+    <h2>Реестр транспортных рейсов (XML)</h2>
+    <p style="color: #57606f; margin-bottom: 20px;">Данные загружаются из XML-файла с возможностью фильтрации и сортировки.</p>
+    
+    <!-- Форма фильтрации и сортировки -->
+    <div class="filter-form">
+        <div class="filter-group">
+            <label>Вид транспорта:</label>
+            <select id="transportFilter" class="filter-control">
+                <option value="">-- Все виды --</option>
+                <option value="Самолет">Самолет</option>
+                <option value="Поезд">Поезд</option>
+                <option value="Автобус">Автобус</option>
+                <option value="Электричка">Электричка</option>
+            </select>
+        </div>
+
+        <div class="filter-group">
+            <label>Сортировать по:</label>
+            <select id="sortBy" class="filter-control">
+                <option value="id">По умолчанию (ID)</option>
+                <option value="transport_type">Вид транспорта</option>
+                <option value="route">Маршрут</option>
+                <option value="date">Дата</option>
+                <option value="price">Цена</option>
+            </select>
+        </div>
+
+        <div class="filter-group">
+            <label>Порядок:</label>
+            <select id="sortOrder" class="filter-control">
+                <option value="asc">По возрастанию</option>
+                <option value="desc">По убыванию</option>
+            </select>
+        </div>
+
+        <button type="button" class="btn-filter" onclick="loadXMLData()">Применить</button>
+    </div>
+
+    <!-- Контейнер для таблицы -->
+    <div id="tableContainer">Загрузка данных...</div>
+</div>
+
+<footer>
+    <p>&copy; 2026 Система заказа билетов. Все права защищены.</p>
+</footer>
+
+<script>
+async function loadXMLData() {
+    try {
+        let response = await fetch('lab2.xml');
+        let text = await response.text();
+        let parser = new DOMParser();
+        let xmlDoc = parser.parseFromString(text, "text/xml");
+        
+        let trips = Array.from(xmlDoc.getElementsByTagName("trip"));
+        
+        let filterType = document.getElementById("transportFilter").value;
+        let sortBy = document.getElementById("sortBy").value;
+        let sortOrder = document.getElementById("sortOrder").value;
+
+        // Фильтрация
+        if (filterType !== "") {
+            trips = trips.filter(trip => {
+                let type = trip.getElementsByTagName("transport_type")[0].textContent;
+                return type === filterType;
+            });
+        }
+
+        // Сортировка
+        trips.sort((a, b) => {
+            let valA = a.getElementsByTagName(sortBy)[0].textContent;
+            let valB = b.getElementsByTagName(sortBy)[0].textContent;
+
+            if (sortBy === 'id' || sortBy === 'price') {
+                valA = Number(valA);
+                valB = Number(valB);
+            }
+
+            if (valA < valB) return sortOrder === 'asc' ? -1 : 1;
+            if (valA > valB) return sortOrder === 'asc' ? 1 : -1;
+            return 0;
+        });
+
+        // Построение HTML-таблицы
+        let html = `<table class="schedule-table">
+            <thead>
+                <tr>
+                    <th>№</th>
+                    <th>Вид транспорта</th>
+                    <th>Маршрут</th>
+                    <th>Дата отправления</th>
+                    <th>Цена (руб.)</th>
+                </tr>
+            </thead>
+            <tbody>`;
+
+        if (trips.length === 0) {
+            html += `<tr><td colspan="5" style="text-align:center;">Ничего не найдено</td></tr>`;
+        } else {
+            trips.forEach(trip => {
+                let id = trip.getElementsByTagName("id")[0].textContent;
+                let type = trip.getElementsByTagName("transport_type")[0].textContent;
+                let route = trip.getElementsByTagName("route")[0].textContent;
+                let date = trip.getElementsByTagName("date")[0].textContent;
+                let price = trip.getElementsByTagName("price")[0].textContent;
+
+                html += `<tr>
+                    <td>${id}</td>
+                    <td>${type}</td>
+                    <td>${route}</td>
+                    <td>${date}</td>
+                    <td><strong>${price} ₽</strong></td>
+                </tr>`;
+            });
+        }
+
+        html += `</tbody></table>`;
+        document.getElementById("tableContainer").innerHTML = html;
+
+    } catch (error) {
+        document.getElementById("tableContainer").innerHTML = "Ошибка загрузки XML данных.";
+        console.error(error);
+    }
+}
+
+// Загрузить данные при открытии страницы
+window.onload = loadXMLData;
+</script>
+
+</body>
+</html>
