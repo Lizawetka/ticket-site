@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<transport_catalog>
+    <trip>
+        <id>1</id>
+        <transport_type>Самолет</transport_type>
+        <route>Москва — Санкт-Петербург</route>
+        <date>25.10.2026</date>
+        <price>4500</price>
+    </trip>
+    <trip>
+        <id>2</id>
+        <transport_type>Поезд</transport_type>
+        <route>Москва — Нижний Новгород</route>
+        <date>23.10.2026</date>
+        <price>2100</price>
+    </trip>
+    <trip>
+        <id>3</id>
+        <transport_type>Автобус</transport_type>
+        <route>Москва — Владимир</route>
+        <date>22.10.2026</date>
+        <price>950</price>
+    </trip>
+    <trip>
+        <id>4</id>
+        <transport_type>Электричка</transport_type>
+        <route>Москва — Сергиев Посад</route>
+        <date>22.10.2026</date>
+        <price>350</price>
+    </trip>
+    <trip>
+        <id>5</id>
+        <transport_type>Самолет</transport_type>
+        <route>Москва — Сочи</route>
+        <date>28.10.2026</date>
+        <price>7200</price>
+    </trip>
+    <trip>
+        <id>6</id>
+        <transport_type>Поезд</transport_type>
+        <route>Москва — Казань</route>
+        <date>26.10.2026</date>
+        <price>3400</price>
+    </trip>
+    <trip>
+        <id>7</id>
+        <transport_type>Автобус</transport_type>
+        <route>Москва — Ярославль</route>
+        <date>24.10.2026</date>
+        <price>1200</price>
+    </trip>
+    <trip>
+        <id>8</id>
+        <transport_type>Самолет</transport_type>
+        <route>Москва — Екатеринбург</route>
+        <date>30.10.2026</date>
+        <price>6100</price>
+    </trip>
+    <trip>
+        <id>9</id>
+        <transport_type>Поезд</transport_type>
+        <route>Москва — Санкт-Петербург</route>
+        <date>23.10.2026</date>
+        <price>2900</price>
+    </trip>
+    <trip>
+        <id>10</id>
+        <transport_type>Электричка</transport_type>
+        <route>Москва — Тверь</route>
+        <date>22.10.2026</date>
+        <price>580</price>
+    </trip>
+    <trip>
+        <id>11</id>
+        <transport_type>Автобус</transport_type>
+        <route>Москва — Тула</route>
+        <date>25.10.2026</date>
+        <price>850</price>
+    </trip>
+    <trip>
+        <id>12</id>
+        <transport_type>Самолет</transport_type>
+        <route>Москва — Новосибирск</route>
+        <date>02.11.2026</date>
+        <price>11500</price>
+    </trip>
+    <trip>
+        <id>13</id>
+        <transport_type>Поезд</transport_type>
+        <route>Москва — Самара</route>
+        <date>27.10.2026</date>
+        <price>3100</price>
+    </trip>
+    <trip>
+        <id>14</id>
+        <transport_type>Электричка</transport_type>
+        <route>Москва — Рязань</route>
+        <date>22.10.2026</date>
+        <price>650</price>
+    </trip>
+    <trip>
+        <id>15</id>
+        <transport_type>Самолет</transport_type>
+        <route>Москва — Калининград</route>
+        <date>29.10.2026</date>
+        <price>5400</price>
+    </trip>
+    <trip>
+        <id>16</id>
+        <transport_type>Автобус</transport_type>
+        <route>Москва — Смоленск</route>
+        <date>26.10.2026</date>
+        <price>1400</price>
+    </trip>
+</transport_catalog>
