@@ -29,32 +29,64 @@
         header h1 { font-size: 32px; margin: 0 0 8px 0; text-transform: uppercase; letter-spacing: 2px; }
         header p { font-size: 16px; margin: 0; opacity: 0.9; }
 
+        /* Адаптивное горизонтальное меню */
         .nav-container {
-            max-width: 1100px;
+            max-width: 1150px;
             margin: -30px auto 30px auto;
             padding: 0 20px;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 12px;
             position: relative;
             z-index: 10;
+        }
+        .nav-wrapper {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10px;
+        }
+        .menu-toggle {
+            display: none;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 12px 18px;
+            font-size: 15px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            text-align: left;
+        }
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            justify-content: center;
+            gap: 6px;
+            padding: 10px 0;
         }
         .nav-card-btn {
             background: white;
             color: var(--dark);
-            padding: 12px 18px;
-            border-radius: 12px;
+            padding: 10px 14px;
+            border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 14px;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            font-size: 13px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
             display: flex;
             align-items: center;
-            gap: 8px;
-            transition: transform 0.2s, background 0.2s, color 0.2s;
+            gap: 6px;
+            transition: all 0.2s;
+            white-space: nowrap;
         }
-        .nav-card-btn:hover, .nav-card-btn.active { transform: translateY(-3px); background: var(--secondary); color: white; }
+        .nav-card-btn:hover, .nav-card-btn.active {
+            background: var(--secondary);
+            color: white;
+            transform: translateY(-2px);
+        }
 
         .container { max-width: 1000px; margin: 20px auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
         h2 { color: var(--secondary); font-size: 22px; border-bottom: 3px solid var(--warning); padding-bottom: 8px; display: inline-block; margin-top: 0; }
@@ -73,15 +105,30 @@
         .filter-group { display: flex; flex-direction: column; }
         .filter-group label { font-size: 13px; font-weight: 600; color: #57606f; margin-bottom: 5px; }
         .filter-control { padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; background: white; }
-        .btn-filter { background: var(--secondary); color: white; border: none; padding: 10px 20px; border-radius: 6px; font-weight: bold; cursor: pointer; }
-        .btn-filter:hover { background: #3b2bc5; }
 
         .schedule-table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 14px; }
         .schedule-table th, .schedule-table td { border: 1px solid #e4e7eb; padding: 12px; text-align: left; }
-        .schedule-table th { background-color: var(--secondary); color: white; }
+        .schedule-table th { background-color: var(--secondary); color: white; cursor: pointer; user-select: none; transition: background 0.2s; }
+        .schedule-table th:hover { background-color: #3b2bc5; }
         .schedule-table tr:nth-child(even) { background-color: #f8f9fa; }
+        .sort-hint { font-size: 11px; opacity: 0.8; margin-left: 5px; }
 
         footer { text-align: center; padding: 15px; background: var(--dark); color: white; margin-top: 40px; font-size: 13px; }
+
+        /* Адаптивное сворачивание меню */
+        @media (max-width: 1050px) {
+            .menu-toggle { display: block; }
+            .nav-wrapper { flex-direction: column; align-items: stretch; padding: 10px; }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                gap: 5px;
+                padding-top: 10px;
+            }
+            .nav-links.show { display: flex; }
+            .nav-card-btn { width: 100%; box-sizing: border-box; justify-content: flex-start; }
+        }
     </style>
 </head>
 <body>
@@ -99,24 +146,34 @@
 </header>
 
 <nav class="nav-container">
-    <a href="index.html" class="nav-card-btn">🏠 Главная</a>
-    <a href="transport.html" class="nav-card-btn">🚆 Транспорт</a>
-    <a href="flights_plane.html" class="nav-card-btn">✈️ Рейсы</a>
-    <a href="tickets.html" class="nav-card-btn">🎟️ Билеты</a>
-    <a href="customers.html" class="nav-card-btn">👤 Заказчики</a>
-    <a href="search.html" class="nav-card-btn">🔍 Поиск</a>
-    <a href="links.html" class="nav-card-btn">🔗 Ссылки</a>
-    <a href="contacts.html" class="nav-card-btn">📞 Контакты</a>
+    <div class="nav-wrapper">
+        <button class="menu-toggle" onclick="toggleMenu()">≡ Меню навигации</button>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html" class="nav-card-btn">🏠 Главная</a>
+            <a href="transport.html" class="nav-card-btn">🚆 Транспорт</a>
+            <a href="flights_plane.html" class="nav-card-btn">✈️ Рейсы</a>
+            <a href="tickets.html" class="nav-card-btn">🎟️ Билеты</a>
+            <a href="customers.html" class="nav-card-btn">👤 Заказчики</a>
+            <a href="search.html" class="nav-card-btn">🔍 Поиск</a>
+            <a href="links.html" class="nav-card-btn">🔗 Ссылки</a>
+            <a href="contacts.html" class="nav-card-btn">📞 Контакты</a>
+        </div>
+    </div>
 </nav>
 
 <div class="container">
     <h2>Каталог транспортных рейсов</h2>
     
-    <!-- Форма фильтрации и сортировки -->
+    <!-- Форма поиска, фильтрации и сортировки -->
     <div class="filter-form">
         <div class="filter-group">
+            <label>Поиск по символам:</label>
+            <input type="text" id="searchInput" class="filter-control" placeholder="Введите город, дату или цену..." oninput="processData()">
+        </div>
+
+        <div class="filter-group">
             <label>Вид транспорта:</label>
-            <select id="transportFilter" class="filter-control">
+            <select id="transportFilter" class="filter-control" onchange="processData()">
                 <option value="">-- Все виды --</option>
                 <option value="Самолет">Самолет</option>
                 <option value="Поезд">Поезд</option>
@@ -127,7 +184,7 @@
 
         <div class="filter-group">
             <label>Сортировать по:</label>
-            <select id="sortBy" class="filter-control">
+            <select id="sortBy" class="filter-control" onchange="processData()">
                 <option value="id">По умолчанию</option>
                 <option value="date">Дата отправления</option>
                 <option value="price">Цена</option>
@@ -135,14 +192,12 @@
         </div>
 
         <div class="filter-group">
-            <label>Порядок:</label>
-            <select id="sortOrder" class="filter-control">
-                <option value="asc">По возрастанию </option>
-                <option value="desc">По убыванию </option>
+            <label>Направление:</label>
+            <select id="sortOrder" class="filter-control" onchange="processData()">
+                <option value="asc">По возрастанию</option>
+                <option value="desc">По убыванию</option>
             </select>
         </div>
-
-        <button type="button" class="btn-filter" onclick="processData()">Применить</button>
     </div>
 
     <!-- Контейнер для таблицы -->
@@ -174,6 +229,29 @@ const xmlString = `<?xml version="1.0" encoding="UTF-8"?>
     <trip><id>16</id><transport_type>Автобус</transport_type><route>Москва — Смоленск</route><date>26.10.2026</date><price>1400</price></trip>
 </transport_catalog>`;
 
+function toggleMenu() {
+    let links = document.getElementById("navLinks");
+    links.classList.toggle("show");
+}
+
+function sortByColumn(columnName) {
+    let sortBySelect = document.getElementById("sortBy");
+    let sortOrderSelect = document.getElementById("sortOrder");
+    
+    // Сортируем по клику на колонку, только если это доступные поля (id, date, price) или любые другие
+    if (columnName === 'transport_type' || columnName === 'route') {
+        columnName = 'id'; // Если кликнули по нефильтруемым колонкам, сбрасываем на id или обрабатываем как текст
+    }
+
+    if (sortBySelect.value === columnName) {
+        sortOrderSelect.value = sortOrderSelect.value === "asc" ? "desc" : "asc";
+    } else {
+        sortBySelect.value = columnName;
+        sortOrderSelect.value = "asc";
+    }
+    processData();
+}
+
 function processData() {
     try {
         let parser = new DOMParser();
@@ -181,11 +259,29 @@ function processData() {
         
         let trips = Array.from(xmlDoc.getElementsByTagName("trip"));
         
+        let searchText = document.getElementById("searchInput").value.toLowerCase().trim();
         let filterType = document.getElementById("transportFilter").value;
         let sortBy = document.getElementById("sortBy").value;
         let sortOrder = document.getElementById("sortOrder").value;
 
-        // Фильтрация
+        // 1. Поиск по символам
+        if (searchText !== "") {
+            trips = trips.filter(trip => {
+                let id = trip.getElementsByTagName("id")[0].textContent.toLowerCase();
+                let type = trip.getElementsByTagName("transport_type")[0].textContent.toLowerCase();
+                let route = trip.getElementsByTagName("route")[0].textContent.toLowerCase();
+                let date = trip.getElementsByTagName("date")[0].textContent.toLowerCase();
+                let price = trip.getElementsByTagName("price")[0].textContent.toLowerCase();
+                
+                return id.includes(searchText) || 
+                       type.includes(searchText) || 
+                       route.includes(searchText) || 
+                       date.includes(searchText) || 
+                       price.includes(searchText);
+            });
+        }
+
+        // 2. Фильтрация по транспорту
         if (filterType !== "") {
             trips = trips.filter(trip => {
                 let type = trip.getElementsByTagName("transport_type")[0].textContent;
@@ -193,7 +289,7 @@ function processData() {
             });
         }
 
-        // Сортировка
+        // 3. Сортировка данных
         trips.sort((a, b) => {
             let valA = a.getElementsByTagName(sortBy)[0].textContent;
             let valB = b.getElementsByTagName(sortBy)[0].textContent;
@@ -213,21 +309,21 @@ function processData() {
             return 0;
         });
 
-        // Построение HTML-таблицы
+        // 4. Построение таблицы
         let html = `<table class="schedule-table">
             <thead>
                 <tr>
-                    <th>№</th>
+                    <th onclick="sortByColumn('id')">№ <span class="sort-hint">↕</span></th>
                     <th>Вид транспорта</th>
                     <th>Маршрут</th>
-                    <th>Дата отправления</th>
-                    <th>Цена (руб.)</th>
+                    <th onclick="sortByColumn('date')">Дата отправления <span class="sort-hint">↕</span></th>
+                    <th onclick="sortByColumn('price')">Цена (руб.) <span class="sort-hint">↕</span></th>
                 </tr>
             </thead>
             <tbody>`;
 
         if (trips.length === 0) {
-            html += `<tr><td colspan="5" style="text-align:center;">Ничего не найдено</td></tr>`;
+            html += `<tr><td colspan="5" style="text-align:center;">По вашему запросу ничего не найдено</td></tr>`;
         } else {
             trips.forEach(trip => {
                 let id = trip.getElementsByTagName("id")[0].textContent;
